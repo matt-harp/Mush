@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://wj461l50av7d"]
+
+[ext_resource type="Script" path="res://src/player/Player.cs" id="1_0cgme"]
+[ext_resource type="Texture2D" uid="uid://caybntoru6o1e" path="res://src/player/reticle.png" id="2_kagya"]
+[ext_resource type="Script" path="res://src/player/ui/PlayerUI.cs" id="2_p5otn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ap0bf"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_0cgme")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ap0bf")
+
+[node name="Camera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.514918, 0)
+
+[node name="InteractionCast" type="RayCast3D" parent="Camera"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -2)
+
+[node name="PlayerUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_p5otn")
+
+[node name="Reticle" type="TextureRect" parent="PlayerUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kagya")
+expand_mode = 1

@@ -1,0 +1,40 @@
+// Godot addons configuration file for use with the GodotEnv tool.
+// See https://github.com/chickensoft-games/GodotEnv for more info.
+// -------------------------------------------------------------------- //
+// Note: this is a JSONC file, so you can use comments!
+// If using Rider, see https://youtrack.jetbrains.com/issue/RIDER-41716
+// for any issues with JSONC.
+// -------------------------------------------------------------------- //
+{
+  "$schema": "https://chickensoft.games/schemas/addons.schema.json",
+  // "path": "addons", // default
+  // "cache": ".addons", // default
+  "addons": {
+    "imrp": { // name must match the folder name in the repository
+      "url": "https://github.com/MakovWait/improved_resource_picker",
+      // "source": "remote", // default
+      // "checkout": "main", // default
+      "subfolder": "addons/imrp"
+    },
+    "godot_jolt": {
+      "url": "https://github.com/godot-jolt/godot-jolt/releases/download/v0.14.0-stable/godot-jolt_v0.14.0-stable.zip",
+      "source": "zip",
+      "subfolder": "addons/godot-jolt"
+    },
+    "godot-git-plugin": {
+      "url": "https://github.com/godotengine/godot-git-plugin/releases/download/v3.1.1/godot-git-plugin-v3.1.1.zip",
+      "source": "zip",
+      "subfolder": "godot-git-plugin-v3.1.1/addons/godot-git-plugin"
+    },
+    "terrain_3d": {
+      "url": "https://github.com/TokisanGames/Terrain3D/releases/download/v0.9.3-beta/terrain3d-0.9.3a-beta.zip",
+      "source": "zip",
+      "subfolder": "addons/terrain_3d"
+    },
+    "debug_draw_3d": {
+      "url": "https://github.com/DmitriySalnikov/godot_debug_draw_3d/releases/download/1.4.5/debug-draw-3d_1.4.5.zip",
+      "source": "zip",
+      "subfolder": "debug_draw_3d-1.4.5/addons/debug_draw_3d"
+    }
+  }
+}
