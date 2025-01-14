@@ -9,7 +9,9 @@
         "coverage/**/*.*",
         ".godot/**/*.*",
         "**/*.tres",
-        "addons/**/*.*"
+        "addons/**/*.*",
+        "addons.jsonc",
+        "project.godot"
     ],
     "words": [
         "animatable",
@@ -33,6 +35,7 @@
         "gltf",
         "godotengine",
         "hmac",
+        "interactable",
         "issuecomment",
         "joypad",
         "kisak",
@@ -41,6 +44,7 @@
         "lightmapper",
         "lihop",
         "linecoverage",
+        "mathf",
         "methodcoverage",
         "missingall",
         "msbuild",
