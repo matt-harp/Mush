@@ -10,6 +10,8 @@ obj/
 .vs/
 .DS_Store
 .idea/
+*.DotSettings.user
+*.csproj.DotSettings
 
 *.translation
 addons/*
