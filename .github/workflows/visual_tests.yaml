@@ -54,6 +54,11 @@ jobs:
           packages: mesa-vulkan-drivers binutils
           version: 1.0
 
+      - name: 🔌 Install addons using GodotEnv
+        run: |
+          dotnet tool install --global Chickensoft.GodotEnv
+          godotenv addons install
+
       - name: 🤖 Setup Godot
         uses: chickensoft-games/setup-godot@v2
         with:
