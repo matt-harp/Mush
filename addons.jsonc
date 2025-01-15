@@ -10,12 +10,6 @@
   // "path": "addons", // default
   // "cache": ".addons", // default
   "addons": {
-    "imrp": { // name must match the folder name in the repository
-      "url": "https://github.com/MakovWait/improved_resource_picker",
-      // "source": "remote", // default
-      // "checkout": "main", // default
-      "subfolder": "addons/imrp"
-    },
     "godot_jolt": {
       "url": "https://github.com/godot-jolt/godot-jolt/releases/download/v0.14.0-stable/godot-jolt_v0.14.0-stable.zip",
       "source": "zip",
