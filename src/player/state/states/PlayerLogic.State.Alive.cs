@@ -17,25 +17,40 @@ public partial class PlayerLogic {
                 return ToSelf();
             }
 
-            public abstract partial record Grounded : Alive {
-                public partial record Idle : Grounded;
+            public abstract partial record Free : Alive {
+                public abstract partial record Grounded : Free {
+                    public partial record Idle : Grounded;
 
-                public partial record Moving : Grounded {
+                    public partial record Moving : Grounded {
+                    }
+                    public override Transition On(in Input.PhysicsTick input) {
+                        base.On(input);
+
+
+
+                        return ToSelf();
+                    }
                 }
 
+                // apply gravity
                 public override Transition On(in Input.PhysicsTick input) {
                     base.On(input);
 
                     var player = Get<IPlayer>();
-                    var data = Get<Data>();
+                    var velocity = player.Velocity;
+
+                    var delta = (float)input.Delta;
+                    velocity.Y += -GameConstants.Gravity * delta;
+
+                    Output(new Output.VelocityChanged(velocity));
 
                     return ToSelf();
                 }
+
+                public partial record Falling : Free;
             }
 
-            public partial record Falling : Alive;
-
-            public partial record Falling : Alive;
+            public abstract partial record Frozen : Alive;
         }
     }
 }

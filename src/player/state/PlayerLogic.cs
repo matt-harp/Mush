@@ -9,7 +9,7 @@ public interface IPlayerLogic : ILogicBlock<PlayerLogic.State>;
 [Meta]
 [LogicBlock(typeof(State))]
 public partial class PlayerLogic : LogicBlock<PlayerLogic.State>, IPlayerLogic {
-    public override Transition GetInitialState() => To<State.Alive.Grounded.Idle>();
+    public override Transition GetInitialState() => To<State.Alive.Free.Grounded.Idle>();
 
     [Meta]
     public abstract partial record State : StateLogic<State>;
@@ -22,7 +22,10 @@ public partial class PlayerLogic : LogicBlock<PlayerLogic.State>, IPlayerLogic {
         public readonly record struct InputMove(Vector2 Delta);
     }
 
-    public class Data {
+    public static class Output {
+        public readonly record struct VelocityChanged(Vector3 Velocity);
+    }
 
+    public class Data {
     }
 }

@@ -30,8 +30,8 @@ public partial class Player : CharacterBody3D, IPlayer {
 
     public IPlayerLogic PlayerLogic { get; set; } = null!;
     public IInteractionLogic InteractionLogic { get; set; } = null!;
-    public PlayerLogic.IBinding PlayerBinding { get; set; } = null!;
-    public InteractionLogic.IBinding InteractionBinding { get; set; } = null!;
+    public LogicBlock<PlayerLogic.State>.IBinding PlayerBinding { get; set; } = null!;
+    public LogicBlock<InteractionLogic.State>.IBinding InteractionBinding { get; set; } = null!;
 
     #endregion
 
@@ -53,6 +53,11 @@ public partial class Player : CharacterBody3D, IPlayer {
     public void OnResolved() {
         PlayerBinding = PlayerLogic.Bind();
         InteractionBinding = InteractionLogic.Bind();
+
+        PlayerBinding
+            .Handle((in PlayerLogic.Output.VelocityChanged output) => {
+                Velocity = output.Velocity;
+            });
 
         this.Provide();
 
@@ -80,39 +85,41 @@ public partial class Player : CharacterBody3D, IPlayer {
         if (Input.IsKeyPressed(Key.Escape)) {
             GetTree().Quit();
         }
-        var velocity = Velocity;
-        var _movement = Vector3.Zero;
-        var _inputDirection = Input.GetVector(GameInputs.MoveLeft, GameInputs.MoveRight, GameInputs.MoveForward,
-            GameInputs.MoveBackward);
 
-        // Add the gravity
-        if (!IsOnFloor()) velocity.Y -= gravity * (float)GetPhysicsProcessDeltaTime();
-
-        // Convert input to movementDirection
-        _movement = (Transform.Basis * new Vector3(_inputDirection.X, 0, _inputDirection.Y)).Normalized();
-
-        velocity.X = _movement.X * 5;
-        velocity.Z = _movement.Z * 5;
-        Velocity = velocity;
         MoveAndSlide();
 
-        if (_mouseInput == Vector2.Zero) {
-            return;
-        }
-
-        RotateY(Mathf.DegToRad(-_mouseInput.X * 8 * (float)GetPhysicsProcessDeltaTime()));
-        var rotation = Camera.RotationDegrees;
-        rotation.X += -_mouseInput.Y * 8 * (float)GetPhysicsProcessDeltaTime();
-        rotation.X = Mathf.Clamp(rotation.X, -90, 90);
-        Camera.RotationDegrees = rotation;
-
-        _mouseInput = Vector2.Zero;
+        // var velocity = Velocity;
+        // var _movement = Vector3.Zero;
+        // var _inputDirection = Input.GetVector(GameInputs.MoveLeft, GameInputs.MoveRight, GameInputs.MoveForward,
+        //     GameInputs.MoveBackward);
+        //
+        // // Add the gravity
+        // if (!IsOnFloor()) velocity.Y -= gravity * (float)GetPhysicsProcessDeltaTime();
+        //
+        // // Convert input to movementDirection
+        // _movement = (Transform.Basis * new Vector3(_inputDirection.X, 0, _inputDirection.Y)).Normalized();
+        //
+        // velocity.X = _movement.X * 5;
+        // velocity.Z = _movement.Z * 5;
+        // Velocity = velocity;
+        // MoveAndSlide();
+        //
+        // if (_mouseInput == Vector2.Zero) {
+        //     return;
+        // }
+        //
+        // RotateY(Mathf.DegToRad(-_mouseInput.X * 8 * (float)GetPhysicsProcessDeltaTime()));
+        // var rotation = Camera.RotationDegrees;
+        // rotation.X += -_mouseInput.Y * 8 * (float)GetPhysicsProcessDeltaTime();
+        // rotation.X = Mathf.Clamp(rotation.X, -90, 90);
+        // Camera.RotationDegrees = rotation;
+        //
+        // _mouseInput = Vector2.Zero;
     }
+
     //todo temp
-    public override void _Input(InputEvent @event)
-    {
-        if(@event is InputEventMouseMotion mouseEvent)
-        {
+    public override void _Input(InputEvent @event) {
+        if (@event is InputEventMouseMotion mouseEvent) {
             _mouseInput = mouseEvent.ScreenRelative;
         }
     }

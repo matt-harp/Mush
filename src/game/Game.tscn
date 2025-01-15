@@ -21,7 +21,7 @@ use_collision = true
 size = Vector3(15, 0.03, 15)
 
 [node name="Player" parent="." instance=ExtResource("2_f16tp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52541, 1.93808)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.8882, 1.93808)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.920095, 0.391695, 0, -0.391695, 0.920095, 0, 0, 0)
